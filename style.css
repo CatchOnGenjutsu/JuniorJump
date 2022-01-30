@@ -1,0 +1,826 @@
+@font-face {
+  font-family: "KoskoBold";
+  src: url("fonts/KoskoBold-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "KoskoRegular";
+  src: url("fonts/KoskoRegular-Regular.otf") format("opentype");
+}
+@media screen and (min-width: 801px) {
+  html { 
+    overflow:  hidden; 
+  }
+  .loginWindow{
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+  .moveButtonArea{
+    display: none;
+  }
+  .formContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  input {
+    width: 16vw;
+  }
+  .recordsTable{
+    width: 20vw;
+    letter-spacing: 1px;
+    border-collapse: collapse;
+    border: 2px solid saddlebrown;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #ffee55a6;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(244, 165, 96, 0.459);
+  }
+  thead{
+    background: rgba(139, 69, 19, 0.596);
+    color: rgb(255, 203, 60);
+    text-shadow: 1px 1px rgb(212, 170, 52);;
+  }
+  thead th{
+    text-align: center;
+    vertical-align: middle;
+    height: 4vh;
+    font-size: 2.5vh;
+  }
+  td{
+    text-align: center;
+    vertical-align: middle;
+    height: 4vh;
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  .modalTextContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    min-width: 265px;
+    text-align: center;
+    align-items: center;
+  }
+  .loginTextContent{
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .backFromSubmit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .warningMessage{
+    margin: 0;
+    color: red;
+  }
+  input[type="text"] {
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  input[type="submit"] {
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh;
+    margin-top: 1vh;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+    transition: 0.6s linear;
+  }
+  input[type="submit"]:hover{
+    background-color: rgba(207, 103, 29, 0.63);
+  }
+  .inputBackButton{
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh; 
+    width: 120px;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+    transition: 0.6s linear;
+  }
+  .inputBackButton:hover{
+    background-color: rgba(207, 103, 29, 0.63);
+  }
+  body{
+    background-color: rgba(255, 203, 60, 0.685);
+    background: url("image/gridBackgroundFill.jpg");
+    font-family: "KoskoBold";
+  }
+  .main {
+    display: block;
+    margin: auto auto;
+    width: 25vw;
+    min-width: 330px;
+    height: 95vh;
+    min-height: 690px;
+    background: url(image/grid.jpg) 5% 100%;
+    border: 2px solid black;
+    padding: 0;
+  }
+  .overlay {
+    display: block;
+    margin: auto auto;
+    width: 25vw;
+    min-width: 330px;
+    height: 95vh;
+    min-height: 690px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0;
+  }
+  .modalWindow {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto auto;
+    width: 20vw;
+    min-width: 265px;
+    height: 25vh;
+    min-height: 285px;
+    background: rgba(255, 203, 60, 0.685);
+    border: 2px solid saddlebrown;
+    border-radius: 10%;
+    padding: 0;
+  }
+  
+  .modalButtonContent{
+    width: 20vw;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+  }
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto auto;
+    width: 25vw;
+    min-width: 330px;
+    height: 95vh;
+    min-height: 690px;
+    background: url(image/grid.jpg) 5% 100%;
+    border: 0;
+    padding: 0;
+  }
+  .hide{
+    display: none;
+  }
+  .block{
+    display: block;
+  }
+  div.linksButton{
+    vertical-align: middle;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8vw;
+    height: 5vh;
+    min-width: min-content;
+    min-height: min-content;
+    font-size: 2.5vh;
+    line-height: 5vh;
+    border: 2px solid saddlebrown;
+    border-radius: 20%;
+    background-color: rgba(244, 165, 96, 0.459);
+    transition: 0.6s linear;
+  }
+  div.linksButton:hover{
+    background-color: rgba(255, 198, 42, 0.753);
+  }
+  div.modalButton{
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8vw;
+    height: 7vh;
+    min-width: min-content;
+    min-height: min-content;
+    line-height: 3.5vh;
+    border: 2px solid saddlebrown;
+    border-radius: 20%;
+    background-color: rgba(244, 165, 96, 0.459);
+    transition: 0.6s linear;
+  }
+  a.modalButton{
+    font-family: "KoskoBold";
+    font-size: 1.5vh;
+  }
+  div.modalButton:hover{
+    background-color: rgba(139, 69, 19, 0.63);
+  }
+  a{
+    margin: 0;
+    color: saddlebrown;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  .modalButton{
+    font-size: 1vh;
+    line-height: 1vh;
+  }
+  .modalButton:hover{
+    color: rgba(255, 198, 42, 0.753);
+  }
+  div.links{
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .mainPageText{
+    flex-basis: 50%;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 7vh;
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .aboutPageText{
+    text-align: center;
+    margin-top: 5vh;
+    font-size: 5vh;
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .recordPageText{
+    font-size: 7vh;
+  }
+  div.userInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .userImage{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 2.3vw;
+    height: 6.8vh;
+  }
+  div.userDescription{
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  div.clientInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .clientImage{
+    margin-left: 1vw;
+    width: 4vw;
+    height: 5vh;
+  }
+  div.clientDescription{
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  div.teamleadInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .teamleadImage{
+    margin-left: 1vw;
+    width: 4vw;
+    height: 5vh;
+  }
+  div.teamleadDescription{
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  div.deadlineleadInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .dealineImage{
+    margin-left: 1vw;
+    width: 3vw;
+    height: 6vh;
+  }
+  div.deadlineDescription{
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  .playerPersonage {
+    position: absolute;
+    z-index: 1;
+    width: 2.3vw;
+    height: 6.8vh;
+    background: url(image/standart_cuted.png) center;
+    background-size: 75% 100%;
+    background-repeat: no-repeat;
+  }
+  .scoreArea {
+    position: absolute;
+    z-index: 1;
+    font-size: 28px;
+    font-style: oblique;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+  }
+  
+  .jumpLeft{
+    background: url(image/jumpLeft2Pixel_1000x1000.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .jumpRight{
+    background: url(image/jumpRight2Pixel_1000x1000.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .readyToJump{
+    background: url(image/rdyToJump_cuted.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .board {
+    position: absolute;
+    z-index: 0;
+    width: 3.6vw;
+    height: 1.32vh;
+    background: url(image/keyboard.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .client{
+    position: absolute;
+    width: 2.5vw;
+    height: 6vh;
+    background: url(image/client.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .teamLead{
+    position: absolute;
+    width: 2.5vw;
+    height: 6vh;
+    background: url(image/teamLead.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .deadline{
+    position: absolute;
+    width: 3vw;
+    height: 6vh;
+    background: url(image/blackHole1.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  html { 
+    overflow:  hidden; 
+  }
+  .moveButtonArea{
+    position: absolute;
+    top: 85%;
+    width: 95vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .moveButton{
+    width: 12vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    height: 6vh;
+    border: 2px solid saddlebrown;
+    box-shadow: 0px 0px 10px 5px slategray;
+    background-color: sandybrown;
+    color: saddlebrown;
+    display: flex;
+    justify-content: center;
+    line-height: 6vh;
+    font-size: 3vh;
+  }
+  .loginWindow{
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+  }
+  .formContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  input {
+    width: 64vw;
+  }
+  .recordsTable{
+    width: 90vw;
+    letter-spacing: 1px;
+    border-collapse: collapse;
+    border: 2px solid saddlebrown;
+  }
+  tbody tr:nth-child(odd) {
+    background-color: #ffee55a6;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: rgba(244, 165, 96, 0.459);
+  }
+  thead{
+    background: rgba(139, 69, 19, 0.596);
+    color: rgb(255, 203, 60);
+    text-shadow: 1px 1px rgb(212, 170, 52);;
+  }
+  thead th{
+    text-align: center;
+    vertical-align: middle;
+    height: 4vh;
+    font-size: 2.5vh;
+  }
+  td{
+    text-align: center;
+    vertical-align: middle;
+    height: 4vh;
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  .modalTextContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    min-width: 265px;
+    text-align: center;
+    align-items: center;
+  }
+  .loginTextContent{
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .backFromSubmit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .warningMessage{
+    margin: 0;
+    color: red;
+  }
+  input[type="text"] {
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  input[type="submit"] {
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh;
+    margin-top: 1vh;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  .inputBackButton{
+    border: 1px solid saddlebrown; 
+    border-radius: 3px;
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    -khtml-border-radius: 3px;
+    background: #ffee55 ;
+    outline: none; 
+    height: 4vh; 
+    width: 120px;
+    color: saddlebrown; 
+    font-size: 2vh;
+    font-family: "KoskoBold";
+  }
+  body{
+    background-color: rgba(255, 203, 60, 0.685);
+    background: url("image/gridBackgroundFill.jpg");
+    font-family: "KoskoBold";
+  }
+  .main {
+    display: block;
+    margin: 0;
+    width: 95vw;
+    height: 95vh;
+    background: url(image/grid.jpg) 5% 100%;
+    border: 2px solid black;
+    padding: 0;
+  }
+  .overlay {
+    display: block;
+    margin: auto auto;
+    width: 95vw;
+    height: 95vh;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0;
+  }
+  .modalWindow {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: auto auto;
+    width: 80vw;
+    /* min-width: 265px; */
+    height: 25vh;
+    min-height: 185px;
+    background: rgba(255, 203, 60, 0.685);
+    border: 2px solid saddlebrown;
+    border-radius: 10%;
+    padding: 0;
+  }
+  
+  .modalButtonContent{
+    width: 80vw;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+  }
+  .app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto auto;
+    width: 95vw;
+    height: 95vh;
+    background: url(image/grid.jpg) 5% 100%;
+    border: 0;
+    padding: 0;
+  }
+  .hide{
+    display: none;
+  }
+  .block{
+    display: block;
+  }
+  div.linksButton{
+    vertical-align: middle;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 32vw;
+    height: 5vh;
+    min-width: min-content;
+    min-height: min-content;
+    font-size: 2.5vh;
+    line-height: 5vh;
+    border: 2px solid saddlebrown;
+    border-radius: 20%;
+    background-color: rgba(244, 165, 96, 0.459);
+    transition: 0.6s linear;
+  }
+  div.linksButton:hover{
+    background-color: rgba(255, 198, 42, 0.753);
+  }
+  div.modalButton{
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 32vw;
+    height: 7vh;
+    min-width: min-content;
+    min-height: min-content;
+    line-height: 3.5vh;
+    border: 2px solid saddlebrown;
+    border-radius: 20%;
+    background-color: rgba(244, 165, 96, 0.459);
+    transition: 0.6s linear;
+  }
+  a.modalButton{
+    font-family: "KoskoBold";
+    font-size: 1.5vh;
+  }
+  div.modalButton:hover{
+    background-color: rgba(139, 69, 19, 0.63);
+  }
+  a{
+    margin: 0;
+    color: saddlebrown;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+  .modalButton{
+    font-size: 1vh;
+    line-height: 1vh;
+  }
+  .modalButton:hover{
+    color: rgba(255, 198, 42, 0.753);
+  }
+  div.links{
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .mainPageText{
+    flex-basis: 50%;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 7vh;
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .aboutPageText{
+    text-align: center;
+    margin-top: 5vh;
+    font-size: 5vh;
+    color: rgba(124, 97, 21, 0.644);
+    text-shadow: -1px 2px saddlebrown ;
+  }
+  .recordPageText{
+    font-size: 7vh;
+  }
+  div.userInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .userImage{
+    margin-left: 1vw;
+    width: 15vw;
+    height: 6.8vh;
+  }
+  div.userDescription{
+    margin-left: 5vw;
+    margin-right: 1vw;
+  }
+  div.clientInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .clientImage{
+    margin-left: 1vw;
+    width: 16vw;
+    height: 5vh;
+  }
+  div.clientDescription{
+    margin-left: 5vw;
+    margin-right: 1vw;
+  }
+  div.teamleadInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .teamleadImage{
+    margin-left: 1vw;
+    width: 16vw;
+    height: 5vh;
+  }
+  div.teamleadDescription{
+    margin-left: 5vw;
+    margin-right: 1vw;
+  }
+  div.deadlineleadInfo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .dealineImage{
+    margin-left: 1vw;
+    width: 12vw;
+    height: 6vh;
+  }
+  div.deadlineDescription{
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  .playerPersonage {
+    position: absolute;
+    z-index: 1;
+    width: 9.2vw;
+    height: 6.8vh;
+    background: url(image/standart_cuted.png) center;
+    background-size: 75% 100%;
+    background-repeat: no-repeat;
+  }
+  .scoreArea {
+    position: absolute;
+    z-index: 1;
+    font-size: 28px;
+    font-style: oblique;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+  }
+  
+  .jumpLeft{
+    background: url(image/jumpLeft2Pixel_1000x1000.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .jumpRight{
+    background: url(image/jumpRight2Pixel_1000x1000.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .readyToJump{
+    background: url(image/rdyToJump_cuted.png) center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .board {
+    position: absolute;
+    z-index: 0;
+    width: 14.4vw;
+    height: 1.32vh;
+    background: url(image/keyboard.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .client{
+    position: absolute;
+    width: 10vw;
+    height: 6vh;
+    background: url(image/client.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .teamLead{
+    position: absolute;
+    width: 10vw;
+    height: 6vh;
+    background: url(image/teamLead.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+  .deadline{
+    position: absolute;
+    width: 11.5vw;
+    height: 6vh;
+    background: url(image/blackHole1.png);
+    background-size: 100% 100%;
+    border-radius: 15%;
+    background-repeat: no-repeat;
+  }
+}

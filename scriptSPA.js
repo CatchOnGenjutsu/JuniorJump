@@ -34,11 +34,6 @@ const mySPA = (function() {
         return `
         <div id="playerPersonage" class="playerPersonage"></div>
         <div class="scoreArea" id="scoreArea"></div>
-        <div class = "moveButtonArea">
-          <button class = "moveButton buttonLeft" id = "moveLeft"><</button>
-          <button class = "moveButton buttonRight">></button>
-        </div>
-
         <div class="overlay" id="loginOverlay"></div>
         <div class="modalWindow loginWindow" id="loginWindow">
                 <div class="modalTextContent loginTextContent" id="loginTextContent">
@@ -185,11 +180,9 @@ const mySPA = (function() {
       const stringName = 'KOZLOV_JUNIORJUMP_FD2PROJECT';
       const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
       let resultArray = null;
-      // const that = this;
       this.init = function(view) {
         myModuleView = view;
       }
-
       this.readRecords = function(){
         $.ajax(
           {
@@ -220,7 +213,6 @@ const mySPA = (function() {
         }
         myModuleView.renderContent(hashPageName);
       }
-      
   }
 
   /* -------- end model -------- */
@@ -247,26 +239,19 @@ const mySPA = (function() {
 
   return {
       init: function(container) {
-        // this.main(container);
 
         const view = new ModuleView();
         const model = new ModuleModel();
         const controller = new ModuleController();
 
-        //связываем части модуля
         view.init(document.getElementById(container));
         model.init(view);
         controller.init(document.getElementById(container), model);
       },
-
-      // main: function(container) {
-      //   //предварительно что то можно сделать
-      //   console.log(`Иницилизируем SPA для контейнера "${container}"`);
-      // },
   };
 
 }());
 /* ------ end app module ----- */
 
 /*** --- init module --- ***/
-document.addEventListener("DOMContentLoaded", mySPA.init("main")); // инициализируем модуль как только DOM готов.
+document.addEventListener("DOMContentLoaded", mySPA.init("main")); 

@@ -43,7 +43,7 @@
         jumpSound.currentTime = 0;
         jumpSound.play();
       }
-      this.personageMoveBot = function(personageY){
+      this.personageMoveBot = function(personageY) {
         if(personageY > playgroundContainer.offsetTop + playgroundContainer.offsetHeight){
           personage.style.display = "none";
         }
@@ -425,13 +425,13 @@
           let i = 0;
           let direction = null;
             do{
-                if ((playerPersonageY + personageHeight > boardsArray[i][0]) && (playerPersonageY + personageHeight < boardsArray[i][1]) && (playerPersonageX + personageWidth/2 > boardsArray[i][2]) && (playerPersonageX + personageWidth/2 < boardsArray[i][3])){ // проверка попадания на доску
-                  direction = 0;
-                  let diff = minDistance - boardsArray[i][0];
-                  if (boardsArray[i][0] < minDistance){
-                    setTimeout(that.moveBoards(diff), verticalMoveSpeedTimer);
-                  }
+              if ((playerPersonageY + personageHeight > boardsArray[i][0]) && (playerPersonageY + personageHeight < boardsArray[i][1]) && (playerPersonageX + personageWidth/2 > boardsArray[i][2]) && (playerPersonageX + personageWidth/2 < boardsArray[i][3])){ // проверка попадания на доску
+                direction = 0;
+                let diff = minDistance - boardsArray[i][0];
+                if (boardsArray[i][0] < minDistance){
+                  setTimeout(that.moveBoards(diff), verticalMoveSpeedTimer);
                 }
+              }
               i++;
             } while (i < boardsArray.length) 
             if (direction == 0) {
@@ -448,6 +448,13 @@
           if (playerPersonageY >= playgroundHeight){
             window.removeEventListener("beforeunload", that.reloading);
             window.removeEventListener("hashchange", that.backToMenu);
+            window.removeEventListener("touchstart", function(event) {
+              that.mobileСontrol(event);
+            }, false);
+    
+            window.removeEventListener("touchend", function(event) {
+              that.mobileСontrol(event);
+            }, false);
           }
           if (playerPersonageY >= playgroundHeight){
             that.lockGetReady();
@@ -603,6 +610,13 @@
       this.bumpCheck = function() {
         if(((playerPersonageY + personageHeight > clientСoordinates[0]) && (playerPersonageY + personageHeight < clientСoordinates[1]) && (playerPersonageX + personageWidth > clientСoordinates[2]) && (playerPersonageX + personageWidth < clientСoordinates[3])) || ((playerPersonageY + personageHeight > clientСoordinates[0]) && (playerPersonageY + personageHeight < clientСoordinates[1]) && (playerPersonageX > clientСoordinates[2]) && (playerPersonageX < clientСoordinates[3])) || ((playerPersonageY > clientСoordinates[0]) && (playerPersonageY < clientСoordinates[1]) && (playerPersonageX + personageWidth > clientСoordinates[2]) && (playerPersonageX + personageWidth < clientСoordinates[3])) || ((playerPersonageY > clientСoordinates[0]) && (playerPersonageY < clientСoordinates[1]) && (playerPersonageX > clientСoordinates[2]) && (playerPersonageX < clientСoordinates[3]))){
           viewContainer.doSlap();
+          window.removeEventListener("touchstart", function(event) {
+            that.mobileСontrol(event);
+          }, false);
+  
+          window.removeEventListener("touchend", function(event) {
+            that.mobileСontrol(event);
+          }, false);
           that.lockGetReady();
           isGameProcess = false;
           that.reloadInit();
@@ -612,6 +626,13 @@
         }
         if(((playerPersonageY + personageHeight > deadlineCoordinates[0]) && (playerPersonageY + personageHeight < deadlineCoordinates[1]) && (playerPersonageX + personageWidth > deadlineCoordinates[2]) && (playerPersonageX + personageWidth < deadlineCoordinates[3])) || ((playerPersonageY + personageHeight > deadlineCoordinates[0]) && (playerPersonageY + personageHeight < deadlineCoordinates[1]) && (playerPersonageX > deadlineCoordinates[2]) && (playerPersonageX < deadlineCoordinates[3])) || ((playerPersonageY > deadlineCoordinates[0]) && (playerPersonageY < deadlineCoordinates[1]) && (playerPersonageX + personageWidth > deadlineCoordinates[2]) && (playerPersonageX + personageWidth < deadlineCoordinates[3])) || ((playerPersonageY > deadlineCoordinates[0]) && (playerPersonageY < deadlineCoordinates[1]) && (playerPersonageX > deadlineCoordinates[2]) && (playerPersonageX < deadlineCoordinates[3]))){
           viewContainer.doSlap();
+          window.removeEventListener("touchstart", function(event) {
+            that.mobileСontrol(event);
+          }, false);
+  
+          window.removeEventListener("touchend", function(event) {
+            that.mobileСontrol(event);
+          }, false);
           that.lockGetReady();
           isGameProcess = false;
           that.reloadInit();
@@ -686,6 +707,10 @@
       let personage = null;
       let personageModel = null;
       let pressedKeys = null;
+
+      let flagMoveLeft = false;
+      let flagMoveRight = false;
+      let touchstartX = null;
     
       this.init = function (container, personageContainer, model) { // PlayerController init method
         mainContainer = container;
@@ -698,13 +723,9 @@
         const submitButton = mainContainer.querySelector('#submitButton');
         submitButton.addEventListener("click", this.submitNickname);
         
-        const moveLeftButton = mainContainer.querySelector(".buttonLeft");
-        moveLeftButton.addEventListener("mousedown", this.moveLeftTimer);
-
-        const moveRightButton = mainContainer.querySelector(".buttonRight");
-        moveRightButton.addEventListener("mousedown", this.moveRightTimer);
         /* ------ Add event listener to buttons ----- */
         
+        flagCheckTimeout = this.checkMoveFlag();
         this.createPlayground();
         this.createFirstBoard();
         this.createBoards();
@@ -768,6 +789,13 @@
           personageModel.saveNickname(loginInputValue);
           setTimeout(that.personageMoveTop, 1000);
         }
+        window.addEventListener("touchstart", function(event) {
+          that.mobileСontrol(event);
+        }, false);
+
+        window.addEventListener("touchend", function(event) {
+          that.mobileСontrol(event);
+        }, false);
       }
       this.personageMoveTop = function(){ // Player personage moving top
         pressedKeys.start(); 
@@ -776,13 +804,33 @@
         personageModel.startMoveInit(personage.offsetTop, mainContainer.offsetTop + mainContainer.offsetHeight*0.6, mainContainer.offsetTop + mainContainer.offsetHeight*0.9, personage.offsetHeight/2, mainContainer.offsetTop + mainContainer.offsetHeight, personage.offsetHeight/32, personage.offsetHeight, personage.offsetWidth, mainContainer.offsetWidth/300, mainContainer.offsetLeft, mainContainer.offsetLeft + mainContainer.offsetWidth);
         personageModel.personageMoveTop();
       }
-      this.moveLeftTimer = function(){ // Player personage moving left(for mobile)
-        personageModel.movingLeftSide();
-        setTimeout(that.moveLeftTimer, 2);
+      this.mobileСontrol = function(event){
+        if (event.type === "touchstart") {
+          touchstartX = event.changedTouches[0].clientX;
+          if(touchstartX < document.body.clientWidth/2){
+            flagMoveRight = false;
+            flagMoveLeft = true;
+            setTimeout(flagCheckTimeout, 2)
+          } 
+          if(touchstartX > document.body.clientWidth/2){
+            flagMoveLeft = false;
+            flagMoveRight = true;
+            setTimeout(flagCheckTimeout, 2)
+          }
+        } else if (event.type === "touchend") {
+          flagMoveLeft = false;
+          flagMoveRight = false;
+          that.stopMovingSide();
+        }
       }
-      this.moveRightTimer = function(){ // Player personage moving right(for mobile)
-        personageModel.movingRightSide();
-        setTimeout(that.moveRightTimer, 2);
+      this.checkMoveFlag = function(){
+        if(flagMoveLeft){
+          that.movingLeftSide();
+        }
+        if(flagMoveRight){
+          that.movingRightSide();
+        }
+        setTimeout(that.checkMoveFlag, 2);
       }
       this.movingLeftSide = function(){ // Player personage moving left
         personageModel.movingLeftSide();

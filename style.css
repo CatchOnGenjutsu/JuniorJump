@@ -16,9 +16,6 @@
     margin-right: -50%;
     transform: translate(-50%, -50%)
   }
-  .moveButtonArea{
-    display: none;
-  }
   .formContent{
     display: flex;
     flex-direction: column;
@@ -417,29 +414,6 @@
 @media screen and (max-width: 800px) {
   html { 
     overflow:  hidden; 
-  }
-  .moveButtonArea{
-    position: absolute;
-    top: 85%;
-    width: 95vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .moveButton{
-    width: 12vw;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    height: 6vh;
-    border: 2px solid saddlebrown;
-    box-shadow: 0px 0px 10px 5px slategray;
-    background-color: sandybrown;
-    color: saddlebrown;
-    display: flex;
-    justify-content: center;
-    line-height: 6vh;
-    font-size: 3vh;
   }
   .loginWindow{
     top: 50%;
